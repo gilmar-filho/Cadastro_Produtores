@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema{% endblock %}</title>
+    
+    <!-- Fonte externa -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Animações personalizadas -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilo base -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        input, select, textarea {
+            @apply border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-400 transition;
+        }
+        label {
+            @apply block font-medium text-gray-700 mb-1;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-indigo-100 to-purple-100 min-h-screen p-6">
+    <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl p-8 animate-fade-in">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

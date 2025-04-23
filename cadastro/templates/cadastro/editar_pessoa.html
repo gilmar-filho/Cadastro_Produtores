@@ -1,0 +1,24 @@
+{% extends 'cadastro/base.html' %}
+{% block title %}Editar Pessoa{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-semibold text-purple-700 mb-6">✏️ Editar Pessoa</h1>
+<form method="POST" class="space-y-4">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ form.nome.label_tag }} {{ form.nome }}
+        {{ form.cpf.label_tag }} {{ form.cpf }}
+        {{ form.celular1.label_tag }} {{ form.celular1 }}
+        {{ form.celular2.label_tag }} {{ form.celular2 }}
+        {{ form.email.label_tag }} {{ form.email }}
+        {{ form.telefone.label_tag }} {{ form.telefone }}
+        {{ form.data_nascimento.label_tag }} {{ form.data_nascimento }}
+        {{ form.endereco.label_tag }} {{ form.endereco }}
+    </div>
+    <button type="submit" class="mt-4 bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition">
+        💾 Salvar Alterações
+    </button>
+</form>
+<p class="mt-4">
+    🔙 <a href="{% url 'listar_pessoas' %}" class="text-purple-500 hover:underline">Voltar à lista</a>
+</p>
+{% endblock %}

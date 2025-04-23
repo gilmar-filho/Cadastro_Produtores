@@ -1,0 +1,50 @@
+{% extends 'cadastro/base.html' %}
+{% block title %}Lista de Pessoas{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-semibold text-green-700">📋 Lista de Pessoas</h1>
+    <div class="space-x-2">
+        <a href="{% url 'cadastrar_pessoa' %}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">
+            ➕ Nova Pessoa
+        </a>
+        <a href="{% url 'exportar_pdf_todos' %}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+            🧾 Exportar Tudo (PDF)
+        </a>
+    </div>
+</div>
+<table class="w-full table-auto border-collapse rounded-xl overflow-hidden shadow">
+    <thead class="bg-green-200 text-green-900">
+        <tr>
+            <th class="p-3 text-left">Nome</th>
+            <th class="p-3 text-left">CPF</th>
+            <th class="p-3 text-left">Telefone 1</th>
+            <th class="p-3 text-left">Endereço</th>
+            <th class="p-3 text-left">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pessoa in pessoas %}
+        <tr class="bg-white hover:bg-gray-100 border-b transition">
+            <td class="p-3">{{ pessoa.nome }}</td>
+            <td class="p-3">{{ pessoa.cpf }}</td>
+            <td class="p-3">{{ pessoa.telefone1 }}</td>
+            <td class="p-3">{{ pessoa.endereco }}</td>
+            <td class="p-3 space-x-2">
+                <a href="{% url 'editar_pessoa' pessoa.pk %}" class="text-blue-600 hover:underline">✏️</a>
+                <a href="{% url 'deletar_pessoa' pessoa.pk %}" class="text-red-600 hover:underline">🗑️</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Exportar por período -->
+<div class="mt-6">
+    <h2 class="text-lg font-semibold">📅 Exportar por período:</h2>
+    <form method="get" action="{% url 'exportar_por_periodo' %}" class="flex gap-4 mt-2">
+        <input type="date" name="inicio" class="border rounded p-2">
+        <input type="date" name="fim" class="border rounded p-2">
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">📤 Exportar PDF</button>
+    </form>
+</div>
+{% endblock %}

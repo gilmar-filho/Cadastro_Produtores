@@ -1,0 +1,18 @@
+{% extends 'cadastro/base.html' %}
+{% block title %}Deletar Pessoa{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold text-red-600 mb-4">⚠️ Confirmar Exclusão</h1>
+<p class="text-lg mb-6">Tem certeza que deseja excluir <strong>{{ pessoa.nome }}</strong>? Esta ação <strong>não poderá ser desfeita</strong>.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-lg transition">
+        🗑️ Deletar e Exportar PDF
+    </button>
+    <a href="{% url 'listar_pessoas' %}" class="ml-4 text-gray-600 hover:underline">Cancelar</a>
+</form>
+
+<p class="mt-4 text-sm text-gray-500">
+    ⚠️ Ao deletar, os dados serão automaticamente exportados em PDF para que você tenha um backup.
+</p>
+{% endblock %}

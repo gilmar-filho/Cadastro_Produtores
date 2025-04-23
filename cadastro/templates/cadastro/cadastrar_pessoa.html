@@ -1,0 +1,51 @@
+{% extends 'cadastro/base.html' %}
+{% block title %}Cadastrar Pessoa{% endblock %}
+{% block content %}
+
+<h1 class="text-3xl font-semibold text-indigo-700 mb-6">👤 Cadastrar Pessoa</h1>
+
+<!-- Campo de busca -->
+<div class="mb-6 relative">
+  <input type="text" id="busca_nome" placeholder="Buscar pessoa por nome..." class="border border-gray-400 rounded-lg p-2 w-full">
+  <ul id="resultados" class="absolute bg-white shadow-lg z-10 w-full hidden max-h-40 overflow-y-auto"></ul>
+</div>
+
+<form method="POST" class="space-y-6">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg transition">
+        💾 Salvar
+    </button>
+</form>
+
+<p class="mt-6">
+    🔙 <a href="{% url 'listar_pessoas' %}" class="text-indigo-500 hover:underline">Voltar à lista</a>
+</p>
+
+<script>
+const busca = document.getElementById('busca_nome');
+const resultados = document.getElementById('resultados');
+
+busca.addEventListener('input', function () {
+  if (this.value.length > 1) {
+    fetch(`/buscar/?term=${this.value}`)
+      .then(response => response.json())
+      .then(data => {
+        resultados.innerHTML = '';
+        data.forEach(p => {
+          const li = document.createElement('li');
+          li.textContent = p.nome;
+          li.classList = 'p-2 hover:bg-indigo-100 cursor-pointer';
+          li.onclick = () => window.location.href = `/editar/${p.id}/`;
+          resultados.appendChild(li);
+        });
+        resultados.classList.remove('hidden');
+      });
+  } else {
+    resultados.innerHTML = '';
+    resultados.classList.add('hidden');
+  }
+});
+</script>
+
+{% endblock %}
