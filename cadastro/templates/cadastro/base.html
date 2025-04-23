@@ -44,6 +44,39 @@
             @apply block font-medium text-gray-700 mb-1;
         }
     </style>
+
+    <style>
+        input[type="text"],
+        input[type="tel"],
+        input[type="number"],
+        textarea {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-family: inherit;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+        margin-bottom: 10px;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="tel"]::placeholder,
+        input[type="number"]::placeholder,
+        textarea::placeholder {
+        color: #999;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+        border-color: #6c63ff;
+        }
+  </style>
 </head>
 <body class="bg-gradient-to-r from-indigo-100 to-purple-100 min-h-screen p-6">
     <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl p-8 animate-fade-in">
