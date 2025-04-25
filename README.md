@@ -19,6 +19,7 @@ O projeto ainda precisa ser lapidado e melhorado, porém as funcionalidades bás
 ```
 prefeitura/
 ├── cadastro/
+│   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── forms.py
@@ -35,11 +36,15 @@ prefeitura/
 │   └── views.py
 ├── prefeitura/
 │   ├── __init__.py
+│   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── db.sqlite3
-└── manage.py
+├── manage.py
+├── Procfile
+└── requirements.txt
+
 ```
 
 ## Requisitos
